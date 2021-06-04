@@ -10,6 +10,7 @@ using System;
 using Newtonsoft.Json.Serialization;
 using System.Data.Common;
 using CustomerAPI.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Commander
 {
@@ -34,6 +35,13 @@ namespace Commander
             services.AddDbContext<CustomerContext>(opt => opt.UseSqlServer(_connectionString)
             );
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.Audience = Configuration["AAD:ResourceId"];
+                    opt.Authority = $"{Configuration["AAD:InstanceId"]}{Configuration["AAD:TenantId"]}";
+                });
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers().AddNewtonsoftJson(x =>
@@ -56,6 +64,7 @@ namespace Commander
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

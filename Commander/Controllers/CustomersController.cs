@@ -3,6 +3,7 @@ using CustomerApi.Data;
 using CustomerApi.Models;
 using CustomerApi.Repository;
 using CustomerAPI.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,7 @@ namespace Commander.Controllers
         
 
         //GET api/customers
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
