@@ -6,7 +6,9 @@ namespace CustomerClient
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            AuthConfig config = AuthConfig.ReadPropertiesFromFile("appsettings.json");
+
+            Console.WriteLine($"Authority: {config.Authority}");
         }
     }
 }
