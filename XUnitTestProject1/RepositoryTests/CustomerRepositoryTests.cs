@@ -67,6 +67,23 @@ namespace CustomerAPITests.CustomerRepositoryTests
             Assert.Equal(expected, result);
         }
 
+        //[Fact]
+        //public void AddCustomer_should_return_a_bad_request_if_customer_object_is_null()
+        //{
+        //    //Arrange
+        //    var newCustomer = new Customer { Id = 1, FirstName = "Bill", LastName = "Williamson", CustomerType = "Personal" };
+        //    _repository.Setup(x => x.AddCustomer(null))
+        //        .Returns(_repository.Object);
+
+        //    //Act
+        //    var expected = new ArgumentNullException(nameof(newCustomer));
+        //    var result =_repository.Object.AddCustomer(null);
+
+        //    //Assert
+        //    Assert.Equal(expected, result);
+
+        //}
+
         [Fact]
         public void UpdateCustomer_should_update_an_existing_customer_if_the_customer_exists()
         {
